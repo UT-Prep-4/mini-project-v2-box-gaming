@@ -57,5 +57,102 @@ while loops, for loops, lists, random, and turtle graphics.
 ==============================================================================
 Build your game below. Delete this line and start coding!
 '''
+import random
+import turtle
+import time
+screen = turtle.Screen()
+lace = turtle.Turtle()
+phan = turtle.Turtle()
 
-print("My game is not built yet!")
+def move_up():
+  lace.speed(0)
+  lace.setheading(90)
+  lace.speed(5)
+  lace.fd(50)
+
+def move_left():
+  lace.speed(0)
+  lace.setheading(180)
+  lace.speed(5)
+  lace.fd(50)
+
+def move_down():
+  lace.speed(0)
+  lace.setheading(270)
+  lace.speed(5)
+  lace.fd(50)
+
+def move_right():
+  lace.speed(0)
+  lace.setheading(0)
+  lace.speed(5)
+  lace.fd(50)
+
+
+def square_helper(count):
+  #randomly place squares and increase score when the turtle enters one (unless turtle is already in the square location)
+  phan.speed(0)
+  phan.hideturtle()
+  score_up = 0
+  while count == 0:
+    phan.penup()
+    phan.goto(random.randint(-225,225),random.randint(-225,225))
+    phan.pendown()
+    phan.fd(50)
+    phan.lt(90)
+    phan.fd(50)
+    phan.lt(90)
+    phan.fd(50)
+    phan.lt(90)
+    phan.fd(50)
+    count = count + 1
+
+  if lace.pos()[0] > phan.pos()[0] and lace.pos()[1] > phan.pos()[1] and lace.pos()[0] < (phan.pos()[0]+50) and lace.pos()[1] < (phan.pos()[1]+50):
+    phan.clear()
+    phan.penup()
+    phan.goto(random.randint(-225,225),random.randint(-225,225))
+    phan.pendown()
+    phan.setheading(0)
+    phan.fd(50)
+    phan.lt(90)
+    phan.fd(50)
+    phan.lt(90)
+    phan.fd(50)
+    phan.lt(90)
+    phan.fd(50)
+
+
+  return count
+
+
+def score_writer():
+  #use lace.write at the top right of the screen to show score
+  print('placeholder score')
+
+
+def main():
+
+  print('WASD to move')
+  lace.penup()
+  count = 0
+  score = 0
+  loop_var = 0
+  while loop_var == 0:
+    screen.onkey(move_up, "w")
+    screen.onkey(move_left, "a")
+    screen.onkey(move_down, "s")
+    screen.onkey(move_right, "d")
+    screen.listen()
+
+    count = square_helper(count)
+    
+    score_writer()
+
+    print(count)
+    if lace.pos()[0] > phan.pos()[0] and lace.pos()[1] > phan.pos()[1] and lace.pos()[0] < (phan.pos()[0]+50) and lace.pos()[1] < (phan.pos()[1]+50):
+      score += 1
+
+    
+    
+main()
+turtle.done()
