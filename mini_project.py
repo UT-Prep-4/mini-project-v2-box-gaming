@@ -153,7 +153,8 @@ def main():
 
     if count == 0:
       count = square_helper(count)
-    count = count + 1
+    if count == 1:
+      count = count + 1
     if square_helper(count) == 1:
       score = score + 1
 
