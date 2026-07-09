@@ -121,13 +121,19 @@ def square_helper(count):
     phan.fd(50)
     phan.lt(90)
     phan.fd(50)
-
-
-  return count
+    score_up = score_up + 1
+  if count == 1:
+    return count
+  if count > 1:
+    return score_up
 
 
 def score_writer(score):
-  horn.write(f'SCORE: {score:.0f}')
+  horn.penup()
+  horn.hideturtle()
+  horn.goto(240,240)
+  horn.clear()
+  horn.write(f'SCORE: {score:.0f}',font=('Courier', 12, 'normal'))
 
 
 
@@ -136,8 +142,8 @@ def main():
   print('WASD to move')
   lace.penup()
   count = 0
-  score = 0
   loop_var = 0
+  score = 0
   while loop_var == 0:
     screen.onkey(move_up, "w")
     screen.onkey(move_left, "a")
@@ -145,17 +151,16 @@ def main():
     screen.onkey(move_right, "d")
     screen.listen()
 
-    count = square_helper(count)
-    
-    
+    if count == 0:
+      count = square_helper(count)
+    count = count + 1
+    if square_helper(count) == 1:
+      score = score + 1
 
     print(count)
-    if lace.pos()[0] > phan.pos()[0] and lace.pos()[1] > phan.pos()[1] and lace.pos()[0] < (phan.pos()[0]+50) and lace.pos()[1] < (phan.pos()[1]+50):
-      score += 1
-    print(score)
+    print('scoreis'+str(score))
     score_writer(score)
 
-    
     
 main()
 turtle.done()
