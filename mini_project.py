@@ -63,6 +63,7 @@ import time
 screen = turtle.Screen()
 lace = turtle.Turtle()
 phan = turtle.Turtle()
+horn = turtle.Turtle()
 
 def move_up():
   lace.speed(0)
@@ -125,9 +126,9 @@ def square_helper(count):
   return count
 
 
-def score_writer():
-  #use lace.write at the top right of the screen to show score
-  print('placeholder score')
+def score_writer(score):
+  horn.write(f'SCORE: {score:.0f}')
+
 
 
 def main():
@@ -146,11 +147,13 @@ def main():
 
     count = square_helper(count)
     
-    score_writer()
+    
 
     print(count)
     if lace.pos()[0] > phan.pos()[0] and lace.pos()[1] > phan.pos()[1] and lace.pos()[0] < (phan.pos()[0]+50) and lace.pos()[1] < (phan.pos()[1]+50):
       score += 1
+    print(score)
+    score_writer(score)
 
     
     

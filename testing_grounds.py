@@ -4,6 +4,6 @@ test = turtle.Turtle()
 test.fd(107)
 if test.pos()[0] > 7:
     print('yellow')
-print(test.pos()[0])
+print(f'{str(test.pos()[0])}')
 
 turtle.done()
